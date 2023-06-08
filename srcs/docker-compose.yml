@@ -1,13 +1,29 @@
 version: '3'
 
 services:
-  nginx:
-    image: nginx:latest
-    build: ./requirements/nginx
+  # nginx:
+  #   build: ./requirements/nginx
+  #   volumes:
+  #     - ./requirements/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+  #     - ./requirements/nginx/tools/csr.conf:/etc/nginx/csr.conf
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   hostname: nginx
+  #   init: true
+  #   networks:
+  #     - inception
+  db:
+    image: mariadb:latest
+    build: ./requirements/mariadb
     volumes:
-      - ./requirements/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
-      - ./requirements/nginx/tools/csr.conf:/etc/nginx/csr.conf
-    ports:
-      - 80:80
-      - 443:443
-    hostname: nginx
+      - /goinfre/habouiba/data:/var/lib/mysql # set this to /home/habouiba/data
+    networks:
+      - inception
+    hostname: db
+    init: true
+
+networks:
+  inception:
+    driver: bridge
+    name: inception

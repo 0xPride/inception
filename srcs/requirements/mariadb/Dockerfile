@@ -2,22 +2,14 @@ FROM alpine:3
 
 EXPOSE 3306
 
-COPY ./tools/entrypoint.sh /
-
-RUN apk update
-
-RUN apk add mariadb
-
+COPY ./tools/entrypoint.sh .
 RUN chmod 766 /entrypoint.sh
 
-RUN adduser -D -s /sbin/nologin mariadbuser
+RUN apk update
+RUN apk add mysql mysql-client
 
-RUN chown -R mariadbuser:mariadbuser /var/lib/mysql
-RUN chown -R mariadbuser:mariadbuser /var/log/mariadb
-RUN chmod -R 700 /var/lib/mysql
-RUN chmod -R 700 /var/log/mariadb
+VOLUME /var/log/mysql
 
+# RUN chown mysql:mysql /var/lib/mysql
 
-ENTRYPOINT [ "/entrypoint.sh" ]
-
-# CMD ["mysqld"]
+# ENTRYPOINT ["sh", "/entrypoint.sh"]
