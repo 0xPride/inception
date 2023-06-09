@@ -17,11 +17,13 @@ services:
     image: mariadb:latest
     build: ./requirements/mariadb
     volumes:
-      - /goinfre/habouiba/data:/var/lib/mysql # set this to /home/habouiba/data
+      - /home/habouiba/data:/var/lib/mysql # set this to /home/habouiba/data
     networks:
       - inception
     hostname: db
     init: true
+    env_file:
+        - ./.env
 
 networks:
   inception:

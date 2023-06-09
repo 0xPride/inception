@@ -10,6 +10,8 @@ RUN apk add mysql mysql-client
 
 VOLUME /var/log/mysql
 
-# RUN chown mysql:mysql /var/lib/mysql
+RUN chown mysql:mysql /var/lib/mysql
 
-# ENTRYPOINT ["sh", "/entrypoint.sh"]
+ENTRYPOINT ["sh", "/entrypoint.sh"]
+
+CMD ["mysqld_safe"]
