@@ -22,7 +22,7 @@ services:
     build: ./requirements/mariadb
     volumes:
       - /goinfre/habouiba/data:/var/lib/mysql # set this to /home/habouiba/data
-      - ./requirements/mariadb/conf/my.cnf:/etc/mysql/my.cnf
+      # - ./requirements/mariadb/conf/my.cnf:/etc/mysql/my.cnf
     networks:
       - inception
     hostname: mariadb
