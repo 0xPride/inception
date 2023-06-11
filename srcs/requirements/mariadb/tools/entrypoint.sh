@@ -1,8 +1,12 @@
 #!/bin/bash
-set -e
-mysql_install_db --basedir=/usr --datadir=/var/lib/mysql --user=mysql
+# set -e
+# mysql_install_db --basedir=/usr --datadir=/var/lib/mysql
+mysql_install_db --basedir=/usr --datadir=/var/lib/mysql --defaults-file=/etc/mysql/my.cnf
 # /etc/init.d/mariadb setup
 # /etc/init.d/mariadb start
+echo "=================================="
+cat /var/log/mysql/error.log
+echo "=================================="
 
 mysql -e "UPDATE mysql.user SET Password = PASSWORD('${MYSQL_ROOT_PASSWORD}') WHERE User = 'root'"
 

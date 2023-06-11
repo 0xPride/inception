@@ -1,4 +1,4 @@
-FROM alpine:3
+FROM alpine:3.18
 
 EXPOSE 3306
 
@@ -8,10 +8,13 @@ RUN chmod 766 /entrypoint.sh
 RUN apk update
 RUN apk add mysql mysql-client
 
-VOLUME /var/log/mysql
+# VOLUME /var/log/mysql
 
-RUN chown mysql:mysql /var/lib/mysql
+RUN mkdir /var/log/mysql/
+RUN chown -R mysql:mysql /var/lib/mysql
+RUN chown -R mysql:mysql /var/log/mysql
 
 ENTRYPOINT ["sh", "/entrypoint.sh"]
 
-CMD ["mysqld_safe"]
+CMD ["sh"]
+# CMD ["mysqld_safe"]
