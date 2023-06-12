@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 WP=/var/www/html/habouiba.42.fr/
 
 chown -R www-data:www-data /var/www/html/

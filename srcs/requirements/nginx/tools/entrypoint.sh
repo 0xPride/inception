@@ -4,34 +4,22 @@ mkdir /etc/nginx/ssl
 
 chmod 755 /etc/nginx/ssl
 
-cat > /etc/nginx/csr.conf <<EOF
-[ req ]
-default_bits = 2048
-prompt = no
-default_md = sha256
-req_extensions = req_ext
-distinguished_name = dn
+KEY=/etc/nginx/ssl/habouiba.42.fr.key
+CSR=/etc/nginx/ssl/habouiba.42.fr.csr
+CRT=/etc/nginx/ssl/habouiba.42.fr.crt
 
-[ dn ]
-C = US
-ST = California
-L = San Fransisco
-O = MLopsHub
-OU = MlopsHub Dev
-CN = habouiba.42.fr
+openssl genrsa -out $KEY
+openssl req -key $KEY -new -out $CSR <<EOF
+MR
+BG
+BG
+LEET
+LEET
+habouiba.42.fr
+email@email.com
 
-[ req_ext ]
-subjectAltName = @alt_names
-
-[ alt_names ]
-DNS.1 = demo.mlopshub.com
-DNS.2 = www.demo.mlopshub.com
-IP.1 = 192.168.1.5
-IP.2 = 192.168.1.6
-
+1337
 EOF
-
-openssl genrsa -out /etc/nginx/ssl/habouiba.42.fr.key
-openssl req -x509 -config /etc/nginx/csr.conf -key /etc/nginx/ssl/habouiba.42.fr.key -out /etc/nginx/ssl/habouiba.42.fr.crt -days 365
+openssl req -x509 -in $CSR -key $KEY -out $CRT -days 365
 
 exec "$@"

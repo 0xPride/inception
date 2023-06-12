@@ -4,8 +4,6 @@ services:
   nginx:
     build: ./requirements/nginx
     volumes:
-      - ./requirements/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
-      # - ./requirements/nginx/tools/csr.conf:/etc/nginx/csr.conf
       - wordpress_vol:/var/www/html/habouiba.42.fr
     ports:
       - 80:80
