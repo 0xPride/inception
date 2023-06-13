@@ -13,6 +13,7 @@ RUN mkdir -p /run/mysqld
 RUN chown -R mysql:mysql /var/lib/mysql
 RUN chown -R mysql:mysql /var/log/mysql
 RUN chown -R mysql:mysql /run/mysqld
+RUN chmod -R 770 /var/lib/mysql
 
 ENTRYPOINT ["sh", "/entrypoint.sh"]
 
