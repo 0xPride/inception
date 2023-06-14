@@ -2,6 +2,7 @@ version: '3'
 
 services:
   nginx:
+    image: nginx:1337
     build: ./requirements/nginx
     volumes:
       - wordpress_vol:/var/www/html/habouiba.42.fr
@@ -16,11 +17,10 @@ services:
       - db
       - wp
   db:
-    image: mariadb:latest
+    image: mariadb:1337
     build: ./requirements/mariadb
     volumes:
-      - /goinfre/habouiba/data:/var/lib/mysql # set this to /home/habouiba/data
-      # - ./requirements/mariadb/conf/my.cnf:/etc/mysql/my.cnf
+      - /Users/habouiba/goinfre/data:/var/lib/mysql
     networks:
       - inception
     hostname: mariadb
@@ -28,7 +28,7 @@ services:
     env_file:
         - ./.env
   wp:
-    image: wordpress:latest
+    image: wordpress:1337
     build: ./requirements/wordpress
     init: true
     networks:

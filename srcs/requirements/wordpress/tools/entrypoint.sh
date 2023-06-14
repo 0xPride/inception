@@ -11,8 +11,6 @@ sed -i "s/username_here/${WP_DB_USR}/" ${WP}wp-config.php
 sed -i "s/password_here/${WP_DB_PWD_USR}/" ${WP}wp-config.php
 sed -i "s/localhost/${DB_HOSTNAME}/" ${WP}wp-config.php
 
-cat ${WP}/wp-config.php
-
 mkdir /run/php/
 chown www-data:www-data /run/php
 exec "$@"

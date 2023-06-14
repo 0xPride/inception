@@ -3,22 +3,8 @@ set -e
 
 mysql_install_db --basedir=/usr --datadir=/var/lib/mysql --user=mysql --rpm > /dev/null
 
+
 mariadbsetup=$(mktemp)
-# cat <<EOF >mariadbsetup
-# USE mysql;
-# FLUSH PRIVILEGES;
-# SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${MYSQL_ROOT_PASSWORD}');
-# CREATE USER '${MYSQL_USER}'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';
-# DROP DATABASE test;
-
-
-# CREATE DATABASE $WP_DB CHARACTER SET utf8 COLLATE utf8_general_ci;
-# CREATE USER '$WP_DB_USR'@'%' IDENTIFIED by '$WP_DB_PWD_USR';
-# GRANT ALL PRIVILEGES ON $WP_DB.* TO '$WP_DB_USR'@'%';
-
-# FLUSH PRIVILEGES;
-# EOF
-
 cat <<EOF >mariadbsetup
 USE mysql;
 FLUSH PRIVILEGES;
@@ -27,12 +13,11 @@ DELETE FROM mysql.user WHERE User='';
 DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
 DROP DATABASE IF EXISTS test;
 DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
-CREATE DATABASE $WP_DB CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE USER '$WP_DB_USR'@'%' IDENTIFIED by '$WP_DB_PWD';
-GRANT ALL PRIVILEGES ON $WP_DB.* TO '$WP_DB_USR'@'%'';
+CREATE DATABASE IF NOT EXISTS $WP_DB CHARACTER SET = 'utf8' COLLATE = 'utf8_general_ci';
+CREATE USER IF NOT EXISTS '$WP_DB_USR'@'%' IDENTIFIED by '$WP_DB_PWD';
+GRANT ALL PRIVILEGES ON $WP_DB.* TO '$WP_DB_USR'@'%';
 FLUSH PRIVILEGES;
 EOF
-
 mysqld --user=mysql --bootstrap < mariadbsetup
 rm mariadbsetup
 
