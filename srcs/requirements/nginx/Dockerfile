@@ -12,6 +12,8 @@ COPY ./tools/entrypoint.sh /
 
 RUN chmod 755 /entrypoint.sh
 
+COPY ./conf/nginx.conf /etc/nginx/http.d/
+
 ENTRYPOINT [ "sh", "/entrypoint.sh" ]
 
 CMD [ "nginx", "-g", "daemon off;" ]
