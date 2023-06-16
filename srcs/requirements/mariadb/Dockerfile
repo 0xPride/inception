@@ -16,6 +16,8 @@ COPY ./tools/entrypoint.sh .
 
 RUN chmod 766 /entrypoint.sh
 
+COPY ./conf/mariadb-server.cnf /etc/my.cnf.d/mariadb-server.cnf
+
 ENTRYPOINT ["sh", "/entrypoint.sh"]
 
 CMD ["mysqld_safe", "--user=mysql", "--console"]
