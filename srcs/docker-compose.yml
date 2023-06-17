@@ -47,6 +47,21 @@ services:
     image: redis:1337
     build: ./requirements/bonus/redis
     hostname: redis
+    init: true
+
+  ftp:
+    image: ftp:1337
+    build: ./requirements/bonus/ftp
+    init: true
+    hostname: ftp
+    env_file:
+      - ./.env
+    ports:
+      - 20:20
+      - 21:21
+      - 40000-40100:40000-40100
+    volumes:
+      - wordpress_vol:/home/ftpusr/ftp
 
 networks:
   inception:
