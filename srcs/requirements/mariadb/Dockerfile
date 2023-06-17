@@ -20,4 +20,4 @@ COPY ./conf/mariadb-server.cnf /etc/my.cnf.d/mariadb-server.cnf
 
 ENTRYPOINT ["sh", "/entrypoint.sh"]
 
-CMD ["mysqld_safe", "--user=mysql", "--console"]
+CMD ["mysqld", "--user=mysql", "--console"]
