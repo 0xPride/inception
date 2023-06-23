@@ -1,6 +1,50 @@
 ---
 import Nav from './../../components/nav.astro'
+import Project from './../../components/projects.astro'
+
+const projects = [
+{
+  name: "nand to tetris",
+  url: "https://github.com/0xPride/nand2tetris",
+  about: "This repository contains my implementations to the problems for the famous From NAND to Tetris projects created by Noam Nisan and Shimon Schocken."
+},
+
+{
+  name: "nand to tetris",
+  url: "https://github.com/0xPride/nand2tetris",
+  about: "This repository contains my implementations to the problems for the famous From NAND to Tetris projects created by Noam Nisan and Shimon Schocken."
+},
+{
+  name: "nand to tetris",
+  url: "https://github.com/0xPride/nand2tetris",
+  about: "This repository contains my implementations to the problems for the famous From NAND to Tetris projects created by Noam Nisan and Shimon Schocken."
+}
+]
 ---
 
-<Nav />
-<h1>projects page</h1>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>proj</title>
+	</head>
+	<body>
+    <Nav />
+{
+  projects.map(data => <Project name={data.name} link={data.url} about={data.about}/> )
+}
+	</body>
+</html>
+
+<style>
+  body {
+    max-width: 65rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

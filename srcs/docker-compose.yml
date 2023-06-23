@@ -16,6 +16,7 @@ services:
       - inception
     depends_on:
       - wp
+      - portfolio
   db:
     image: mariadb:1337
     build: ./requirements/mariadb
@@ -77,6 +78,13 @@ services:
     init: true
     depends_on:
       - db
+  portfolio:
+    image: portfolio:1337
+    build: ./requirements/bonus/portfolio
+    networks:
+      - inception
+    hostname: portfolio
+    init: true
 
 networks:
   inception:

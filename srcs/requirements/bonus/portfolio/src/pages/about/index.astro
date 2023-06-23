@@ -2,5 +2,55 @@
 import Nav from './../../components/nav.astro'
 ---
 
-<Nav />
-<h1>about page</h1>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>habouiba | about me</title>
+	</head>
+	<body>
+    <Nav />
+      <p>Welcome to my About Me page! I'm John Smith, a passionate and dedicated software engineer with a knack for turning ideas
+      into functional and efficient software solutions. With years of experience in the industry, I have honed my skills in developing
+      robust and scalable applications, and I constantly strive to stay up-to-date with the latest technologies and industry trends
+      I believe that software engineering is more than just writing lines of code; it's about problem-solving and creating innovative
+      solutions that make a positive impact. Throughout my career, I have had the privilege of working on a diverse range of projects,
+      from small startups to large-scale enterprise applications. This exposure has not only enhanced my technical expertise but has
+      also given me a deep understanding of various industries and their unique challenges.
+      My technical skill set includes proficiency in multiple programming languages such as Java, Python, and JavaScript, along with expertise
+      in modern frameworks and libraries like Spring, Django, and React. I have a solid understanding of software development principles,
+      including object-oriented design, design patterns, and agile methodologies. Moreover, I am well-versed in database management systems,
+      cloud computing, and version control systems.
+      Collaboration and effective communication are vital aspects of my work style. I thrive in team environments, valuing open and transparent
+      communication to ensure seamless coordination among team members. I actively engage in discussions, sharing my insights and learning from
+      others to foster a culture of continuous improvement.
+      Beyond my technical abilities, I am a lifelong learner who enjoys exploring new technologies and challenging myself with complex problems.
+      I possess a strong analytical mindset and attention to detail, allowing me to identify potential issues early on and implement optimal
+      solutions. I am driven by a desire to deliver high-quality software that not only meets client expectations but also exceeds them.
+      In addition to my professional pursuits, I am passionate about sharing my knowledge and empowering others. I actively participate in
+      tech communities, attending conferences and meetups, and occasionally delivering talks or workshops. I find great joy in mentoring junior
+      developers, guiding them on their career paths, and fostering an inclusive and collaborative environment.
+      When I'm not coding, you can find me exploring the outdoors, playing the guitar, or diving into a good book.
+      I believe in maintaining a healthy work-life balance to recharge my creativity and keep myself motivated.
+      Thank you for taking the time to learn more about me. If you have any questions or would like to discuss potential collaborations,
+      please don't hesitate to reach out. I'm excited about the opportunity to contribute my skills and expertise to impactful software projects.
+      </p>
+	</body>
+</html>
+
+<style>
+  p {
+    max-width: 90ch;
+    text-align: center;
+  }
+  body {
+    max-width: 65rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
