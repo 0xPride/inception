@@ -6,7 +6,10 @@ EXPOSE 3000
 
 RUN apt-get update
 
-RUN apt-get install nodejs npm -y
+RUN apt install curl -y
+
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&\
+  apt-get install -y nodejs
 
 COPY package.json .
 
