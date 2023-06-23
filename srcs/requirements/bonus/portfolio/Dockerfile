@@ -1,12 +1,12 @@
-FROM alpine:3.18
+FROM debian:11.7-slim
 
 WORKDIR /app
 
 EXPOSE 3000
 
-RUN apk update
+RUN apt-get update
 
-RUN apk add nodejs npm
+RUN apt-get install nodejs npm -y
 
 COPY package.json .
 
