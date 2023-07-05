@@ -3,10 +3,10 @@
 set -e
 
 if ! id ${FTP_USER} > /dev/null 2>/dev/null; then
-  adduser ${FTP_USER} << EOF
-  ${FTP_USER_PWD}
-  ${FTP_USER_PWD}
-  EOF
+adduser ${FTP_USER} << EOF
+${FTP_USER_PWD}
+${FTP_USER_PWD}
+EOF
 fi
 
 mkdir -p /home/${FTP_USER}/ftp

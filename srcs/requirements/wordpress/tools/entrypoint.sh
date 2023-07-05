@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set -e
+set -e
 
 WP=/var/www/html/habouiba.42.fr/
 
