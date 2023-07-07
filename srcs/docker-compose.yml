@@ -17,6 +17,8 @@ services:
     depends_on:
       - wp
       - portfolio
+    restart: unless-stopped
+
   db:
     image: mariadb:1337
     build: ./requirements/mariadb
@@ -28,6 +30,8 @@ services:
     init: true
     env_file:
         - ./.env
+    restart: unless-stopped
+
   wp:
     image: wordpress:1337
     build: ./requirements/wordpress
@@ -42,6 +46,7 @@ services:
     env_file:
         - ./.env
     hostname: wp
+    restart: unless-stopped
 
   redis:
     image: redis:1337
@@ -50,6 +55,7 @@ services:
     init: true
     depends_on:
       - wp
+    restart: unless-stopped
 
   ftp:
     image: ftp:1337
@@ -66,6 +72,7 @@ services:
       - wordpress_vol:/home/ftpusr/ftp
     depends_on:
       - wp
+    restart: unless-stopped
 
   adminer:
     image: adminer:1337
@@ -78,6 +85,8 @@ services:
     init: true
     depends_on:
       - db
+    restart: unless-stopped
+
   portfolio:
     image: portfolio:1337
     build: ./requirements/bonus/portfolio
@@ -85,6 +94,16 @@ services:
       - inception
     hostname: portfolio
     init: true
+    restart: unless-stopped
+
+  glances:
+    image: galnces:1337
+    build: ./requirements/bonus/glances
+    networks:
+        - inception
+    hostname: glances
+    init: true
+    restart: unless-stopped
 
 networks:
   inception:
