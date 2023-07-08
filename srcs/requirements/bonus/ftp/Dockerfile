@@ -14,6 +14,5 @@ RUN chmod 770 /entrypoint
 
 ENTRYPOINT [ "/entrypoint" ]
 
-CMD ["sh"]
-# CMD ["/usr/sbin/vsftpd", "/etc/vsftpd/vsftpd.conf"]
+CMD ["/usr/sbin/vsftpd", "/etc/vsftpd/vsftpd.conf"]
 

@@ -23,7 +23,7 @@ services:
     image: mariadb:1337
     build: ./requirements/mariadb
     volumes:
-      - /Users/habouiba/goinfre/data:/var/lib/mysql
+      - /home/habouiba/data:/var/lib/mysql
     networks:
       - inception
     hostname: mariadb
@@ -69,7 +69,7 @@ services:
       - 21:21
       - 40000-40100:40000-40100
     volumes:
-      - wordpress_vol:/home/ftpusr/ftp
+      - wordpress_vol:/home/${FTP_USER}/ftp 
     depends_on:
       - wp
     restart: unless-stopped

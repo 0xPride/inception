@@ -17,6 +17,9 @@ chown ${FTP_USER}:${FTP_USER} -R /home/${FTP_USER}/ftp/files
 
 chmod 555 /home/${FTP_USER}/ftp
 
-echo "${FTP_USER}" | tee -a /etc/vsftpd/vsftpd.userlist
+if ! grep -Fxq "$FTP_USER" /etc/vsftpd/vsftpd.userlist
+then
+  echo "${FTP_USER}" | tee -a /etc/vsftpd/vsftpd.userlist
+fi
 
 exec "$@"

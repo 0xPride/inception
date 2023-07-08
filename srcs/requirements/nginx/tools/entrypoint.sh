@@ -15,7 +15,7 @@ BG
 BG
 LEET
 LEET
-habouiba.42.fr
+*.42.fr
 email@email.com
 
 1337
