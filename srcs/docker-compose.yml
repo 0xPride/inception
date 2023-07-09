@@ -6,7 +6,8 @@ services:
     build: ./requirements/nginx
     volumes:
       - /home/habouiba/data/wordpress:/var/www/html/habouiba.42.fr
-      - /home/habouiba/data/adminer:/var/www/html/adminer
+      - adminer_vol:/var/www/html/adminer
+      # - /home/habouiba/data/adminer:/var/www/html/adminer
     ports:
       - 80:80
       - 443:443
@@ -80,7 +81,8 @@ services:
     image: adminer:1337
     build: ./requirements/bonus/adminer
     volumes:
-      - /home/habouiba/data/adminer:/var/www/html/adminer
+      - adminer_vol:/var/www/html/adminer
+      # - /home/habouiba/data/adminer:/var/www/html/adminer
     networks:
       - inception
     hostname: adminer
@@ -113,4 +115,10 @@ networks:
     name: inception
 
 volumes:
-  mariadb:
+  adminer_vol:
+    dbdata:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/habouiba/data/adminer'
