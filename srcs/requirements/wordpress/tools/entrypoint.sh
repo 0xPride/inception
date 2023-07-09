@@ -17,7 +17,7 @@ if [ ! -f "${WP}wp-config.php" ]; then
     --dbpass=${WP_DB_PWD} \
     --dbhost=${DB_HOSTNAME}
 
-  wp core --allow-root install --url=${DOMAIN_NAME} --title="jilali" --admin_user=${WP_DB_USR} --admin_password=${WP_DB_PWD} --admin_email=${WP_EMAIL}
+  wp core --allow-root install --url=${DOMAIN_NAME} --title=${WP_TITILE} --admin_user=${WP_DB_USR} --admin_password=${WP_DB_PWD} --admin_email=${WP_EMAIL}
 
   wp config set WP_REDIS_SCHEME tcp --allow-root
   wp config set WP_REDIS_PASSWORD foobared --allow-root
