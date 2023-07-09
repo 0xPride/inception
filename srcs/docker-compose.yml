@@ -69,7 +69,7 @@ services:
     ports:
       - 20:20
       - 21:21
-      - 40000-40100:40000-40100
+      - 30000-30100:30000-30100
     volumes:
       - /home/habouiba/data/wordpress:/home/${FTP_USER}/ftp
     depends_on:
