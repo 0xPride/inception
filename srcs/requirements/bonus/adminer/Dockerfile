@@ -11,6 +11,10 @@ RUN mkdir -p /run/php
 
 # RUN curl -fsSL https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php -o /var/www/html/adminer/index.php
 
+COPY ./tools/entrypoint.sh /entrypoint
+RUN chmod 770 /entrypoint
+ENTRYPOINT [ "/entrypoint" ]
+
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 CMD [ "php-fpm7.4", "-F" ]
