@@ -5,8 +5,8 @@ services:
     image: nginx:1337
     build: ./requirements/nginx
     volumes:
-      - wordpress_vol:/var/www/html/habouiba.42.fr
-      - adminer_vol:/var/www/html/adminer
+      - /home/habouiba/data/wordpress:/var/www/html/habouiba.42.fr
+      - /home/habouiba/data/adminer:/var/www/html/adminer
     ports:
       - 80:80
       - 443:443
@@ -23,7 +23,7 @@ services:
     image: mariadb:1337
     build: ./requirements/mariadb
     volumes:
-      - /home/habouiba/data:/var/lib/mysql
+      - /home/habouiba/data/adminer:/var/lib/mysql
     networks:
       - inception
     hostname: mariadb
@@ -39,7 +39,7 @@ services:
     networks:
       - inception
     volumes:
-      - wordpress_vol:/var/www/html/habouiba.42.fr
+      - /home/habouiba/data/wordpress:/var/www/html/habouiba.42.fr
       - ./requirements/wordpress/conf/www.conf:/etc/php/7.4/fpm/pool.d/www.conf
     depends_on:
       - db
@@ -55,6 +55,8 @@ services:
     init: true
     depends_on:
       - wp
+    networks:
+        - inception
     restart: unless-stopped
 
   ftp:
@@ -69,7 +71,7 @@ services:
       - 21:21
       - 40000-40100:40000-40100
     volumes:
-      - wordpress_vol:/home/${FTP_USER}/ftp 
+      - /home/habouiba/data/wordpress:/home/${FTP_USER}/ftp
     depends_on:
       - wp
     restart: unless-stopped
@@ -78,7 +80,7 @@ services:
     image: adminer:1337
     build: ./requirements/bonus/adminer
     volumes:
-      - adminer_vol:/var/www/html/adminer
+      - /home/habouiba/data/adminer:/var/www/html/adminer
     networks:
       - inception
     hostname: adminer
@@ -111,5 +113,4 @@ networks:
     name: inception
 
 volumes:
-  wordpress_vol:
-  adminer_vol:
+  mariadb:

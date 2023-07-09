@@ -7,32 +7,29 @@ WP=/var/www/html/habouiba.42.fr/
 chown -R www-data:www-data /var/www/html/
 
 if [ ! -f "${WP}index.php" ]; then
-  # installing wp-cli
-  mkdir -p ${WP}
-  cd opt;
-  curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-  chmod +x wp-cli.phar
-  mv wp-cli.phar /usr/local/bin/wp
+  wp core download --allow-root --path=/var/www/html/habouiba.42.fr --locale=en_US
+fi
 
-  # installing wordpress
-  wp core download --allow-root --path=${WP} --locale=en_US
-  cd ${WP}
+if [ ! -f "${WP}wp-config.php" ]; then
   wp config create --allow-root \
     --dbname=${WP_DB} \
     --dbuser=${WP_DB_USR} \
-    --dbpass=${WP_PWD} \
+    --dbpass=${WP_DB_PWD} \
     --dbhost=${DB_HOSTNAME}
-  wp db --allow-root create
-  wp db --allow-root query "GRANT ALL PRIVILEGES on ${WP_DB}.* TO \'${WP_DB_USR}\'@'%' IDENTIFIED BY \'${WP_PWD}\';"
-  wp db --allow-root query "FLUSH PRIVILEGES;"
-  
-  wp plugin install --allow-root redis-cache --active
+
+  wp core --allow-root install --url=${DOMAIN_NAME} --title="jilali" --admin_user=${WP_DB_USR} --admin_password=${WP_DB_PWD} --admin_email=${WP_EMAIL}
+
+  wp config set WP_REDIS_SCHEME tcp --allow-root
+  wp config set WP_REDIS_PASSWORD foobared --allow-root
+  wp plugin install redis-cache --activate --allow-root
+
   wp config --allow-root set WP_REDIS_HOST "redis"
   wp config --allow-root set WP_REDIS_PORT "6379"
   wp config --allow-root set WP_REDIS_DATABASE "15"
-
+  wp redis enable --allow-root
 fi
 
 mkdir -p /run/php/
 chown www-data:www-data /run/php
+chown -R www-data:www-data /var/www/html/
 exec "$@"

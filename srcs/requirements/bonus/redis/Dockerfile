@@ -6,4 +6,6 @@ RUN apk add redis
 
 EXPOSE 6379
 
-CMD ["redis-server"]
+COPY ./conf/redis.conf /etc/redis.conf
+
+CMD ["redis-server", "/etc/redis.conf", "--protected-mode", "no"]
