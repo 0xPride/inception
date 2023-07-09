@@ -23,7 +23,7 @@ services:
     image: mariadb:1337
     build: ./requirements/mariadb
     volumes:
-      - /home/habouiba/data/adminer:/var/lib/mysql
+      - /home/habouiba/data/mariadb:/var/lib/mysql
     networks:
       - inception
     hostname: mariadb
