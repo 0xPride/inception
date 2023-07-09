@@ -1,4 +1,4 @@
-all: fclean up
+all: up
 
 up: build
 	docker compose -f ./srcs/docker-compose.yml up
@@ -9,6 +9,5 @@ build:
 down:
 	docker compose -f ./srcs/docker-compose.yml down
 
-clean:
-	-@docker volume rm srcs_wordpress_vol || true 2>&1 1>/dev/null
-	-@docker volume rm srcs_adminer_vol || true 2>&1 1>/dev/null
+logs:
+	docker compose -f ./srcs/docker-compose.yml logs 
